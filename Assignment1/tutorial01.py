@@ -40,7 +40,7 @@ def power(num1, num2): #num1 ^ num2
 def printGP(a, r, n): 
 	gp=[]
 	for i in range(n):
-		gp.append(round(a*power(r,i)))
+		gp.append(round(a*power(r,i),3))
 	return gp 
 
 # Python 3 program to print AP.  arithmetic Progression
@@ -48,7 +48,7 @@ def printGP(a, r, n):
 def printAP(a, d, n): 
 	ap=[]
 	for i in range(n):
-		ap.append(round(a+i*d))
+		ap.append(round(a+i*d,3))
 	return ap
 
 # Python 3 program to print HP.   Harmonic Progression
@@ -58,5 +58,5 @@ def printHP(a, d, n):
 	for i in range(n):
 		if a+i*d==0:
 			return 0
-		hp.append(round(1/(a+i*d)))
+		hp.append(round(1/(a+i*d),3))
 	return hp
