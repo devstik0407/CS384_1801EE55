@@ -58,4 +58,8 @@ def printAP(a, d, n):
 #You cant use the inbuilt python function. Write your own function
 def printHP(a, d, n): 
 	hp=[]
+	for i in range(n):
+		if a+i*d==0:
+			return 0
+		hp.append(round(1/(a+i*d),3))
 	return hp
