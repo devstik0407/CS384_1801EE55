@@ -57,13 +57,15 @@ def variance(first_list):
     variance_value=summation(temp_list)/len(first_list)
     return variance_value
 
-'''
 # Function to compute RMSE. You cant use Python functions
 def rmse(first_list, second_list):
     # RMSE Logic
+    # The function mse has been defined later
+    # Checking for errors has been done in mse(first_list,second_list)
+    rmse_value=math.sqrt(mse(first_list,second_list))
     return rmse_value
 
-
+'''
 # Function to compute mse. You cant use Python functions
 def mse(first_list, second_list):
     # mse Logic
