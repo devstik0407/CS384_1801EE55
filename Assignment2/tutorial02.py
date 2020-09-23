@@ -173,14 +173,26 @@ def skewness(first_list):
 def sorting(first_list):
     # Sorting Logic
     return sorted_list
+'''
 
-
-# Function to compute Kurtosis. You cant use Python functions
 def kurtosis(first_list):
     # Kurtosis Logic
+    for x in first_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    if(len(first_list)==0):
+        return 0
+    mean_value=mean(first_list)
+    sd=standard_deviation(first_list)
+    if(sd==0):
+        return 0
+    temp_list=[]
+    for x in first_list:
+        temp_list.append(((x-mean_value)*(x-mean_value)*(x-mean_value)*(x-mean_value))/(sd*sd*sd*sd))
+    kurtosis_value=summation(temp_list)/len(first_list)
     return kurtosis_value
 
-
+'''
 # Function to compute sum. You cant use Python functions
 def summation(first_list):
     # sum Logic
