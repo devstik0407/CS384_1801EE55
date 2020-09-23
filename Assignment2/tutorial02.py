@@ -13,13 +13,28 @@ def mean(first_list):
         mean_value=summation(first_list)/len(first_list)
         return mean_value
 
-'''
+
 # Function to compute median. You cant use Python functions
 def median(first_list):
     # median Logic
+    median_value=0
+    if(len(first_list)==0):
+        return 0
+    for x in first_list:
+        if(not isinstance(x,(float, int))):
+            return 0
+    # Sorting function has been defined later
+    # We can assume that sorting(sample_list) returns a list containing the elements of sample_list in non-decreasing order
+    temp_list=sorting(first_list.copy())
+    if(len(first_list)%2==0):
+        pos=len(first_list)//2
+        median_value=(temp_list[pos]+temp_list[pos-1])/2
+    else:
+        pos=len(first_list)//2
+        median_value=temp_list[pos]
     return median_value
 
-
+'''
 # Function to compute Standard deviation. You cant use Python functions
 def standard_deviation(first_list):
     # Standard deviation Logic
