@@ -192,9 +192,15 @@ def kurtosis(first_list):
     kurtosis_value=summation(temp_list)/len(first_list)
     return kurtosis_value
 
-'''
 # Function to compute sum. You cant use Python functions
 def summation(first_list):
     # sum Logic
+    for x in first_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    if(len(first_list)==0):
+        return 0
+    summation_value=0
+    for x in first_list:
+        summation_value+=x
     return summation_value
-'''
