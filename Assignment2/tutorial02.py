@@ -34,13 +34,15 @@ def median(first_list):
         median_value=temp_list[pos]
     return median_value
 
-'''
 # Function to compute Standard deviation. You cant use Python functions
 def standard_deviation(first_list):
     # Standard deviation Logic
+    # The function variance has been defined later
+    # Checking for errors has been done in variance(first_list)
+    standard_deviation_value=math.sqrt(variance(first_list))
     return standard_deviation_value
 
-
+'''
 # Function to compute variance. You cant use Python functions
 def variance(first_list):
     # variance Logic
