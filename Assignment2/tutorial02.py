@@ -60,18 +60,28 @@ def variance(first_list):
 # Function to compute RMSE. You cant use Python functions
 def rmse(first_list, second_list):
     # RMSE Logic
-    # The function mse has been defined later
     # Checking for errors has been done in mse(first_list,second_list)
     rmse_value=math.sqrt(mse(first_list,second_list))
     return rmse_value
 
-'''
 # Function to compute mse. You cant use Python functions
 def mse(first_list, second_list):
     # mse Logic
+    for x in first_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    for x in second_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    if(len(first_list)!=len(second_list) or len(first_list)==0):
+        return 0
+    temp_list=[]
+    for i in range(0,len(first_list)):
+        temp_list.append((first_list[i]-second_list[i])*(first_list[i]-second_list[i]))
+    mse_value=summation(temp_list)/len(first_list)
     return mse_value
 
-
+'''
 # Function to compute mae. You cant use Python functions
 def mae(first_list, second_list):
     # mae Logic
