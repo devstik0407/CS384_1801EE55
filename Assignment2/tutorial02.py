@@ -129,13 +129,29 @@ def nse(first_list, second_list):
     nse_value=1-mse_value/variance_value
     return nse_value
 
-'''
 # Function to compute Pearson correlation coefficient. You cant use Python functions
 def pcc(first_list, second_list):
-    # nse Logic
+    # pcc Logic
+    for x in first_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    for x in second_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    if(len(first_list) != len(second_list) or len(first_list)==0):
+        return 0
+    actual_mean=mean(first_list)
+    predicted_mean=mean(second_list)
+    temp_list=[]
+    for i in range(0,len(first_list)):
+        temp_list.append((first_list[i]-actual_mean)*(second_list[i]-predicted_mean))
+    pcc_value=summation(temp_list)/len(first_list)
+    if(standard_deviation(first_list)==0 or standard_deviation(second_list)==0):
+        return 0
+    pcc_value=pcc_value/(standard_deviation(first_list)*standard_deviation(second_list))
     return pcc_value
 
-
+'''
 # Function to compute Skewness. You cant use Python functions
 def skewness(first_list):
     # Skewness Logic
