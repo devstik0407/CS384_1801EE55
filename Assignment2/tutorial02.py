@@ -37,18 +37,27 @@ def median(first_list):
 # Function to compute Standard deviation. You cant use Python functions
 def standard_deviation(first_list):
     # Standard deviation Logic
-    # The function variance has been defined later
     # Checking for errors has been done in variance(first_list)
     standard_deviation_value=math.sqrt(variance(first_list))
     return standard_deviation_value
 
-'''
+
 # Function to compute variance. You cant use Python functions
 def variance(first_list):
     # variance Logic
+    for x in first_list:
+        if(not isinstance(x,(float, int))):
+            return 0
+    if(len(first_list)==0):
+        return 0
+    mean_value=mean(first_list)
+    temp_list=[]
+    for x in first_list:
+        temp_list.append((x-mean_value)*(x-mean_value))
+    variance_value=summation(temp_list)/len(first_list)
     return variance_value
 
-
+'''
 # Function to compute RMSE. You cant use Python functions
 def rmse(first_list, second_list):
     # RMSE Logic
