@@ -98,13 +98,38 @@ def mae(first_list, second_list):
     mae_value=summation(temp_list)/len(first_list)
     return mae_value
 
-'''
 # Function to compute NSE. You cant use Python functions
 def nse(first_list, second_list):
     # nse Logic
+    # To avoid precision errors I have calculated variance and mse without using variance(first_list) and mse(first_list,second_list)
+    for x in first_list:
+        if(not isinstance(x,(float, int))):
+            return 0
+    if(len(first_list)==0):
+        return 0
+    mean_value=mean(first_list)
+    temp_list=[]
+    for x in first_list:
+        temp_list.append((x-mean_value)*(x-mean_value))
+    variance_value=summation(temp_list)/len(first_list)
+    for x in first_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    for x in second_list:
+        if(not isinstance(x,(float,int))):
+            return 0
+    if(len(first_list)!=len(second_list) or len(first_list)==0):
+        return 0
+    temp_list=[]
+    for i in range(0,len(first_list)):
+        temp_list.append((first_list[i]-second_list[i])*(first_list[i]-second_list[i]))
+    mse_value=summation(temp_list)/len(first_list)
+    if(variance_value==0):
+        return 0
+    nse_value=1-mse_value/variance_value
     return nse_value
 
-
+'''
 # Function to compute Pearson correlation coefficient. You cant use Python functions
 def pcc(first_list, second_list):
     # nse Logic
