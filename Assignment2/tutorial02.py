@@ -169,11 +169,40 @@ def skewness(first_list):
     skewness_value=summation(temp_list)/len(first_list)
     return skewness_value
     
-'''    
 def sorting(first_list):
     # Sorting Logic
+    # Here is the implementation of merge sort algorithm
+    for x in first_list:
+        if(not isinstance(x,(float, int))):
+            return 0
+    if len(first_list)<=1:
+        return first_list
+    half1=[]
+    half2=[]
+    for i in range(0,len(first_list)//2):
+        half1.append(first_list[i])
+    for i in range(len(first_list)//2,len(first_list)):
+        half2.append(first_list[i])
+    half1=sorting(half1)
+    half2=sorting(half2)
+    h1=0
+    h2=0
+    sorted_list=[]
+    while(h1<len(half1) or h2<len(half2)):
+        if(h1<len(half1) and h2<(len(half2))):
+            if(half1[h1]<half2[h2]):
+                sorted_list.append(half1[h1])
+                h1+=1
+            else:
+                sorted_list.append(half2[h2])
+                h2+=1
+        elif(h1<len(half1)):
+            sorted_list.append(half1[h1])
+            h1+=1
+        else:
+            sorted_list.append(half2[h2])
+            h2+=1
     return sorted_list
-'''
 
 def kurtosis(first_list):
     # Kurtosis Logic
