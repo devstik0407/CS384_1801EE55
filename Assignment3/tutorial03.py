@@ -115,7 +115,34 @@ def gender():
 
 def dob():
     # Read csv and process
-    pass
+    path = os.getcwd()
+    os.mkdir(path+'\\analytics\\'+'dob')
+    fieldNames = ['id','full_name','country','email','gender','dob','blood_group','state']
+    with open('studentinfo_cs384.csv') as myFile:
+        freader = csv.DictReader(myFile)
+        for x in freader:
+            date = x['dob']
+            year = (int)(date[6:10])
+            if year>=1995 and year<=1999:
+                with open(path+'\\analytics\\dob\\'+'bday_1995_1999'+'.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile, fieldNames)
+                    fwriter.writerow(dict(x))
+            elif year<=2004:
+                with open(path+'\\analytics\\dob\\'+'bday_2000_2004'+'.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile, fieldNames)
+                    fwriter.writerow(dict(x))
+            elif year<=2009:
+                with open(path+'\\analytics\\dob\\'+'bday_2005_2009'+'.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile, fieldNames)
+                    fwriter.writerow(dict(x))
+            elif year<=2014:
+                with open(path+'\\analytics\\dob\\'+'bday_2010_2014'+'.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile, fieldNames)
+                    fwriter.writerow(dict(x))
+            elif year<=2020:
+                with open(path+'\\analytics\\dob\\'+'bday_2015_2020'+'.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile, fieldNames)
+                    fwriter.writerow(dict(x))
 
 
 def state():
