@@ -147,7 +147,15 @@ def dob():
 
 def state():
     # Read csv and process
-    pass
+    path = os.getcwd()
+    os.mkdir(path+'\\analytics\\state')
+    fieldNames = ['id','full_name','country','email','gender','dob','blood_group','state']
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader = csv.DictReader(myFile)
+        for x in freader:
+            with open(path+'\\analytics'+'\\state\\'+x['state'].lower()+'.csv', 'a',newline='') as toEditFile:
+                fwriter = csv.DictWriter(toEditFile,fieldNames)
+                fwriter.writerow(dict(x))
 
 
 def blood_group():
