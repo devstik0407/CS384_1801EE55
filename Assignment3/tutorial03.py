@@ -174,4 +174,29 @@ def blood_group():
 # Create the new file here and also sort it in this function only.
 def new_file_sort():
     # Read csv and process
-    pass
+    path = os.getcwd()
+    fieldNames = ['id','first_name','last_name','country','email','gender','dob','blood_group','state']
+    studentList = []
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader = csv.DictReader(myFile)
+        for x in freader:
+            name = x['full_name']
+            nameSep = name.split(" ")
+            firstName = nameSep[0]
+            lastName = nameSep[1]
+            if not os.path.exists('studentinfo_cs384_names_split.csv'):
+                with open('studentinfo_cs384_names_split.csv','a',newline='') as toEditFile:
+                    fwriter = csv.writer(toEditFile)
+                    fwriter.writerow(fieldNames)
+            else:
+                with open('studentinfo_cs384_names_split.csv','a',newline='') as toEditFile:
+                    fwriter = csv.writer(toEditFile)
+                    tempList = [x['id'],firstName,lastName,x['country'],x['email'],x['gender'],x['dob'],x['blood_group'],x['state']]
+                    fwriter.writerow(tempList)
+            studentList.append([firstName,lastName,x['id'],x['country'],x['email'],x['gender'],x['dob'],x['blood_group'],x['state']])
+    studentList.sort()
+    with open('studentinfo_cs384_names_split_sorted_first_name.csv','a',newline='') as toEditFile:
+        fwriter = csv.writer(toEditFile)
+        fwriter.writerow(fieldNames)
+        for x in studentList:
+            fwriter.writerow([x[2],x[0],x[1],x[3],x[4],x[5],x[6],x[7],x[8]])
