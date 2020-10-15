@@ -30,11 +30,29 @@ def inValidRollNo(rollNo):
         return True
     return False
 
-    
+
 def course():
     # Read csv and process
-    pass
-
+    path = os.getcwd()
+    os.mkdir(path+'\\analytics\\course')
+    fieldNames = ['id','full_name','country','email','gender','dob','blood_group','state']
+    degrees = {'01':'btech','11':'mtech','12':'msc','21':'phd'}
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader = csv.DictReader(myFile)
+        for x in freader:
+            if inValidRollNo(x['id']):
+                with open(path+'\\analytics\\'+'course\\'+'misc.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile,fieldNames)
+                    fwriter.writerow(dict(x))
+            else:
+                joiningYear = x['id'][0:2]
+                degreeCode = x['id'][2:4]
+                spcl = x['id'][4:6]
+                if not os.path.exists(path+'\\analytics\\course\\'+spcl.lower()+'\\'+degrees[degreeCode]):
+                    os.makedirs(path+'\\analytics\\course\\'+spcl.lower()+'\\'+degrees[degreeCode])
+                with open(path+'\\analytics\\course\\'+spcl.lower()+'\\'+degrees[degreeCode]+'\\'+joiningYear+'_'+spcl+'_'+degrees[degreeCode]+'.csv','a',newline='') as toEditFile:
+                    fwriter = csv.DictWriter(toEditFile, fieldNames)
+                    fwriter.writerow(dict(x))
 
 def country():
     # Read csv and process
