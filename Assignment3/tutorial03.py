@@ -56,7 +56,24 @@ def course():
 
 def country():
     # Read csv and process
-    pass
+    countryNames = set()
+    path = os.getcwd()
+    os.mkdir(path+'\\analytics\\country')
+    fieldNames = ['id','full_name','country','email','gender','dob','blood_group','state']
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader=csv.DictReader(myFile)
+        for x in freader:
+            if x['country'] not in countryNames:
+                countryNames.add(x['country'])
+                with open(path+'\\analytics\\country\\'+x['country'].lower()+'.csv','w',newline='') as toEditFile:
+                    fwriter = csv.writer(toEditFile)
+                    fwriter.writerow(fieldNames)
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader=csv.DictReader(myFile)
+        for x in freader:
+            with open(path+'\\analytics\\country\\'+x['country'].lower()+'.csv','a',newline='') as toEditFile:
+                fwriter = csv.DictWriter(toEditFile,fieldNames)
+                fwriter.writerow(dict(x))
 
 
 def email_domain_extract():
