@@ -160,7 +160,15 @@ def state():
 
 def blood_group():
     # Read csv and process
-    pass
+    path = os.getcwd()
+    os.mkdir(path+'\\analytics\\blood_group')
+    fieldNames = ['id','full_name','country','email','gender','dob','blood_group','state']
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader = csv.DictReader(myFile)
+        for x in freader:
+            with open(path+'\\analytics'+'\\blood_group\\'+x['blood_group'].lower()+'.csv', 'a',newline='') as toEditFile:
+                fwriter = csv.DictWriter(toEditFile,fieldNames)
+                fwriter.writerow(dict(x))
 
 
 # Create the new file here and also sort it in this function only.
