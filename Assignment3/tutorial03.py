@@ -78,7 +78,26 @@ def country():
 
 def email_domain_extract():
     # Read csv and process
-    pass
+    path = os.getcwd()
+    os.mkdir(path + '\\analytics\\email_domain')
+    fieldNames = ['id','full_name','country','email','gender','dob','blood_group','state']
+    with open('studentinfo_cs384.csv','r') as myFile:
+        freader=csv.DictReader(myFile)
+        for x in freader:
+            domain=x['email']
+            pos1=0
+            pos2=0
+            for i in range(len(domain)):
+                if domain[i]=='@':
+                    pos1=i+1
+                    pos2=i+1
+                    while domain[pos2] != '.':
+                        pos2+=1
+                    break
+            domain = domain[pos1:pos2]
+            with open(path+'\\analytics\\email_domain\\'+domain+'.csv','a',newline='') as toEditFile:
+                fwriter = csv.DictWriter(toEditFile,fieldNames)
+                fwriter.writerow(dict(x))
 
 
 def gender():
