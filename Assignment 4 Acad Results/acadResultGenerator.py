@@ -112,3 +112,45 @@ def makeRollNumberIndividual():
                           'Type':row['sub_type'],
                           'Grade':row['credit_obtained'],
                           'Sem':row['sem']})
+
+def makeRollNumberOverall():
+    #Creates rollnumber_overall.csv file 
+    #corresponding to correct entries for a particular roll number
+    path = os.getcwd()
+    cnt=0
+    for roll in rollNumbers:
+        cnt+=1
+        fileToRead = open(path+'\\grades\\'+roll+'_individual.csv','r')
+        freader = csv.DictReader(fileToRead)
+        fieldname = ["Semester","Semester Credits","Semester Credits Cleared","SPI","Total Credits","Total Credits Cleared","CPI"]
+        fileToWrite = open(path+'\\grades\\'+roll+'_overall.csv','a',newline='')
+        fwriter = csv.DictWriter(fileToWrite, fieldname)
+        fwriter.writeheader()
+        credit = [0,0,0,0,0,0,0,0]
+        spi = [0,0,0,0,0,0,0,0]
+        for row in freader:
+            sem = int(row['Sem'])-1
+            credit[sem]+=int(row['Credits'])
+            spi[sem]+=int(row['Credits'])*gradeToInteger[row['Grade']]
+        totalCredit=0
+        cpi=[0,0,0,0,0,0,0,0]
+        for i in range(8):
+            if credit[i]==0:
+                continue
+            spi[i]/=credit[i]
+            totalCredit+=credit[i]
+            if i==0:
+                cpi[i]=spi[i]
+            else:
+                cpi[i]=(cpi[i-1]*(totalCredit-credit[i])+spi[i]*credit[i])/totalCredit
+            fwriter.writerow({"Semester":i+1,
+                             "Semester Credits":credit[i],
+                             "Semester Credits Cleared":credit[i],
+                             "SPI":round(spi[i],2),
+                             "Total Credits":totalCredit,
+                             "Total Credits Cleared":totalCredit,
+                             "CPI":round(cpi[i],2)})
+
+errorSeparation()          #To generate the misc.csv file containing erroneous entries    
+makeRollNumberIndividual() #To generate the rollnumber_individual.csv files for correct entries
+makeRollNumberOverall()    #To generate the rollnumber_overall.csv files for correct entries
