@@ -88,3 +88,27 @@ def errorSeparation():
     for row in csvReader:
         if not isValidEntry(row):
             fwriter.writerow(dict(row))
+
+def makeRollNumberIndividual():
+    #Creates rollnumber_individual.csv file 
+    #corresponding to correct entries for a particular roll number
+    path = os.getcwd()
+    fileToRead = open(path+'\\acad_res_stud_grades.csv','r')
+    fReader = csv.DictReader(fileToRead)
+    fieldnames = ["Subject","Credits","Type","Grade","Sem"]
+    cnt=0
+    for row in fReader:
+        if not isValidEntry(row):
+            continue
+        rollNumber = row['roll']
+        fileToWrite = open(path+'\\grades\\'+rollNumber+'_individual.csv','a',newline='')
+        fwriter = csv.DictWriter(fileToWrite,fieldnames)
+        if rollNumber not in rollNumbers:
+            fwriter.writeheader()
+            rollNumbers.add(rollNumber)
+            cnt+=1
+        fwriter.writerow({'Subject':row['sub_code'],
+                          'Credits':row['total_credits'],
+                          'Type':row['sub_type'],
+                          'Grade':row['credit_obtained'],
+                          'Sem':row['sem']})
