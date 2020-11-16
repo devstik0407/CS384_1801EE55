@@ -36,8 +36,21 @@ def rename_Game_of_Thrones(folder_name):
             os.remove(path+'\\'+fileName)
 
 def rename_Sherlock(folder_name):
-    # rename Logic 
-    
+    path = os.getcwd() + "\\Subtitles\\" + folder_name
+    listOfFiles = os.listdir(path)
+    for fileName in listOfFiles:
+        try:
+            bagOfNumbers = re.findall('\d+',fileName)
+            seasonNum = bagOfNumbers[0]
+            episodeNum = bagOfNumbers[1]
+            extension = (re.split('\.',fileName)[-1]).strip()
+            if len(episodeNum) < episodeNumPadding :
+                episodeNum = '0'*(episodeNumPadding - len(episodeNum)) + episodeNum
+            if len(seasonNum) < seasonNumPadding :
+                seasonNum = '0'*(seasonNumPadding - len(seasonNum)) + seasonNum
+            os.rename(path+'\\'+fileName,path+'\\'+'Sherlock - Season'+seasonNum+' Episode '+episodeNum+'.'+extension)
+        except:
+            os.remove(path+'\\'+fileName)
 
 def rename_Suits(folder_name):
     # rename Logic 
