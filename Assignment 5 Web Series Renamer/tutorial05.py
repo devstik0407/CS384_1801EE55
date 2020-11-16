@@ -87,3 +87,29 @@ def rename_How_I_Met_Your_Mother(folder_name):
             os.rename(path+'\\'+fileName,path+'\\'+'How I Met Your Mother - Season'+seasonNum+' Episode '+episodeNum+' - '+title+'.'+extension)
         except:
             os.remove(path+'\\'+fileName)
+
+
+webSeriesName = int(input("Enter main title of web series:"+
+                          "\n1.FIR"+
+                          "\n2.Game of Thrones"+
+                          "\n3.How I Met Your Mother"+
+                          "\n4.Sherlock"+
+                          "\n5.Suits"+
+                          "\nEnter a number corresponding to a particular web series:"))
+seasonNumPadding = int(input("Enter season number padding - "))
+episodeNumPadding = int(input("Enter episode number padding - "))
+webSeries = ['FIR',
+             'Game of Thrones',
+             'How I Met Your Mother',
+             'Sherlock',
+             'Suits']
+if webSeriesName == 1:
+	rename_FIR(webSeries[0])
+elif webSeriesName == 2:
+	rename_Game_of_Thrones(webSeries[1])
+elif webSeriesName == 3:
+	rename_How_I_Met_Your_Mother(webSeries[2])
+elif webSeriesName == 4:
+	rename_Sherlock(webSeries[3])
+elif webSeriesName == 5:
+	rename_Suits(webSeries[4])
