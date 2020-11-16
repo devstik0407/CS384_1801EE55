@@ -71,5 +71,19 @@ def rename_Suits(folder_name):
             os.remove(path+'\\'+fileName)
 
 def rename_How_I_Met_Your_Mother(folder_name):
-    # rename Logic 
-    
+    path = os.getcwd() + "\\Subtitles\\" + folder_name
+    listOfFiles = os.listdir(path)
+    for fileName in listOfFiles:
+        try:
+            bagOfWords = re.split('-',fileName)
+            seasonNum = (re.split('x',bagOfWords[1])[0]).strip()
+            episodeNum = (re.split('x',bagOfWords[1])[1]).strip()
+            extension = (re.split('\.',bagOfWords[-1])[-1]).strip()
+            title = (re.split('\.',bagOfWords[2])[0]).strip()
+            if len(episodeNum) < episodeNumPadding :
+                episodeNum = '0'*(episodeNumPadding - len(episodeNum)) + episodeNum
+            if len(seasonNum) < seasonNumPadding :
+                seasonNum = '0'*(seasonNumPadding - len(seasonNum)) + seasonNum
+            os.rename(path+'\\'+fileName,path+'\\'+'How I Met Your Mother - Season'+seasonNum+' Episode '+episodeNum+' - '+title+'.'+extension)
+        except:
+            os.remove(path+'\\'+fileName)
