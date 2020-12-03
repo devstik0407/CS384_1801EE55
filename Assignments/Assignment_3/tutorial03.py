@@ -248,13 +248,3 @@ def new_file_sort():
         fwriter.writerow(fieldNames)
         for x in studentList:
             fwriter.writerow([x[2],x[0],x[1],x[3],x[4],x[5],x[6],x[7],x[8]])
-
-del_create_analytics_folder()
-course()
-country()
-email_domain_extract()
-gender()
-dob()
-state()
-blood_group()
-new_file_sort()
