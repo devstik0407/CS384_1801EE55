@@ -3,9 +3,6 @@ from tkinter import *
 import pathlib
 from tkinter.messagebox import showinfo
 from tkinter.filedialog import askopenfilename, asksaveasfilename
-#from tkfontchooser import askfont
-#helv36 = tkFont.Font(family="Helvetica",size=36,weight="bold")
-
 import os
        
 def newFile(event = None):
@@ -65,8 +62,6 @@ def creation_time():
     ctime = time.ctime(os.path.getctime(file))
     showinfo("Creation time:",ctime)
     
-
-
 def cut(event = None):
     TextArea.event_generate(("<>"))
 
@@ -77,7 +72,7 @@ def paste(event = None):
     TextArea.event_generate(("<Paste>"))
 
 def about():
-    showinfo("Notepad", "Notepad by Code With Harry")
+    showinfo("Notepad", "Notepad by Swastik Dutta")
 def charcount():
     text = TextArea.get(1.0,END)
     showinfo("Character Count",len(text) - 1)
@@ -168,7 +163,7 @@ if __name__ == '__main__':
   
     #positioning of text box 
     edit.pack(side=LEFT, fill=BOTH, expand=1)  
-  
+
     #setting focus 
     edit.focus_set()  
   
@@ -250,6 +245,7 @@ if __name__ == '__main__':
         #mark located string as red 
             text.tag_config('found', foreground='red')  
         edit.focus_set() 
+
     def findNreplace():  
       
     # remove tag 'found' from index 1 to END  
