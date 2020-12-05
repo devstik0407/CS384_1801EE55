@@ -129,6 +129,7 @@ def login():
 
 
 def conductQuiz(quizName,rollNumber):
+    global temp
     global question_list
     global unattempted_question
     global marked_choice
@@ -203,8 +204,12 @@ def conductQuiz(quizName,rollNumber):
     print("Press Ctrl+Alt+F to submit the quiz finally")
     print("Press Ctrl+Alt+E to export the database to csv")
 
+    if temp > 0:
+        temp = 15
+    
     while temp >= 0:
         pass
+
     if submitted == 0:
         finalSubmit()
         
@@ -297,6 +302,7 @@ def finalSubmit():
             entry["Legend"] = "Total Quiz Marks"
         fwriter.writerow(entry)
         cnt += 1
+    print("\nQuiz successfully submitted")
     print("\nPress Esc to exit")
 
 def exportDB():
@@ -315,6 +321,7 @@ def exportDB():
             qfile = open(os.getcwd()+"\\quiz_wise_responses\\"+quiz_Name+".csv","a",newline='')
             fwriter = csv.DictWriter(qfile, ["roll_number","total_marks"])
             fwriter.writerow({"roll_number":rollNo,"total_marks":marks})
+    print("\nDatabase successfully exported to CSV files")
     print("\nPress Esc to exit")
     conn.close()
 
@@ -356,5 +363,6 @@ while nextQuiz:
         nextQuiz = True 
     else:
         nextQuiz = False
+print("\nPress esc to exit")
 keyboard.wait('esc')
 keyboard.unhook_all()
